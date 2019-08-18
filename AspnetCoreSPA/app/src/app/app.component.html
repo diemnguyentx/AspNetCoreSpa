@@ -17,7 +17,7 @@
           <th>Phone</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody >
         <tr *ngFor="let contactInfo of contacts | filter:term | paginate:{itemsPerPage:10,currentPage:p}; let i = index">
           <td>{{ contactInfo.first_name }}</td>
           <td>{{ contactInfo.last_name }}</td>
