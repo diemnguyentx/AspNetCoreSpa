@@ -39,8 +39,7 @@ namespace AspnetCoreSPATemplate.Controllers
                     phone2 = details.Result.phone2,
                     post = details.Result.post,
                     state = details.Result.state,
-                    web = details.Result.web
-                    
+                    web = details.Result.web                   
                 });
             }
             return contacts;

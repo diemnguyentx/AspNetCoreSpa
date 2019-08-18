@@ -1,18 +1,31 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>First Name</th>
-      <th>Last name</th>
-      <th>Email</th>
-      <th>Phone</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let contactInfo of contacts ">
-      <td>{{ contactInfo.first_name }}</td>
-      <td>{{ contactInfo.last_name }}</td>
-      <td>{{ contactInfo.email}}</td>
-      <td>{{ contactInfo.phone1}}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  <header>
+    <nav class="navbar navbar-dark bg-primary">
+      <h3 class="navbar-nav mx-auto">Acme Contact Management</h3>
+    </nav>
+  </header>
+  <div class="row">
+    <nav class="navbar">
+      <input class="form-control" type="text" name="search" [(ngModel)]="term" placeholder="Search Contacts">
+    </nav>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last name</th>
+          <th>Email</th>
+          <th>Phone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contactInfo of contacts | filter:term | paginate:{itemsPerPage:10,currentPage:p}; let i = index">
+          <td>{{ contactInfo.first_name }}</td>
+          <td>{{ contactInfo.last_name }}</td>
+          <td>{{ contactInfo.email}}</td>
+          <td>{{ contactInfo.phone1}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
