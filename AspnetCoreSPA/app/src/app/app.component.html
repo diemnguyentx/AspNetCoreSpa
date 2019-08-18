@@ -1,6 +1,18 @@
-<h3>Data coming from server values API</h3>
-<ul>
-  <li *ngFor="let value of values">
-    {{ value }}
-  </li>
-</ul>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last name</th>
+      <th>Email</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let contactInfo of contacts ">
+      <td>{{ contactInfo.first_name }}</td>
+      <td>{{ contactInfo.last_name }}</td>
+      <td>{{ contactInfo.email}}</td>
+      <td>{{ contactInfo.phone1}}</td>
+    </tr>
+  </tbody>
+</table>

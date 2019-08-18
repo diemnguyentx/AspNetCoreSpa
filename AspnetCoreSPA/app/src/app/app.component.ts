@@ -7,10 +7,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'app';
-  public values: string[];
+  public contacts: Array<any>;
+  p: number = 1;
   constructor(private http: HttpClient) {
     this.http.get('/api/Contact').subscribe(result => {
-      this.values = result as string[];
+      this.contacts = result as Array<any>;
     }, error => console.error(error));
   }
 }

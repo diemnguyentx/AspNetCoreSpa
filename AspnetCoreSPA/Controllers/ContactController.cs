@@ -16,11 +16,6 @@ namespace AspnetCoreSPATemplate.Controllers
     {
         // GET: api/Contact
         [HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
-
         public List<Contact> Get()
         {
             CsvParserOptions csvParserOptions = new CsvParserOptions(true, ',');
