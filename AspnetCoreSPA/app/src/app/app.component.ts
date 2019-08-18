@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'Contact List';
   public contacts: Array<any>;
   p: number = 1;
   constructor(private http: HttpClient) {
