@@ -6,8 +6,9 @@ This is the SPA using Angular CLI version 8.2.2 for frontend and .net core backe
 
 ## Build Instructions:
 
-The SPA is located under the app folder.
-Fire up the AspNetCore app from Visual Studio and browse to http://locahost:5000
+ The SPA is located under the app folder.
+
+ Fire up the AspNetCore app from Visual Studio and browse to http://locahost:5000
 
 ## Time Summary:
 
