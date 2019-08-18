@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  public values: string[];
+  constructor(private http: HttpClient) {
+    this.http.get('/api/Contact').subscribe(result => {
+      this.values = result as string[];
+    }, error => console.error(error));
+  }
 }
