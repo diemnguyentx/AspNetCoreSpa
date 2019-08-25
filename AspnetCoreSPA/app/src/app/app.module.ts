@@ -3,23 +3,22 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
-import { NgxPaginationModule } from 'ngx-pagination';
+import { ContactComponent } from './contact/contact.component';
+import{ContactService} from './contact.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    Ng2SearchPipeModule,
-    FormsModule,
-    NgxPaginationModule
+    FormsModule
   ],
-  providers: [],
+  providers: [ContactService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

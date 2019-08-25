@@ -1,0 +1,47 @@
+<div class="container">
+    <header>
+      <nav class="navbar navbar-dark bg-primary">
+        <h3 class="navbar-nav mx-auto">Acme Contact Management</h3>
+      </nav>
+    </header>
+    <div class="row">
+      <nav class="navbar">
+        <div class="input-group md-form form-sm form-2 pl-0">
+          <input class="form-control my-0 py-1 red-border" type="text" name="search" [(ngModel)]="term"
+            placeholder="Search Contacts" aria-label="Search" (keyup)="serchContacts()">
+        </div>
+      </nav>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let contactInfo of contacts">
+            <td>{{ contactInfo.first_name }}</td>
+            <td>{{ contactInfo.last_name }}</td>
+            <td>{{ contactInfo.email}}</td>
+            <td>{{ contactInfo.phone1}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination pg-blue">
+          <li class="page-item">
+            <a class="page-link" href="#{{pageNumber}}" (click)="prevPage($event)">Previous</a>
+          </li>
+          <li class="page-item" *ngFor="let p of pages; let i=index">
+            <a class="page-link" href="#{{pageNumber}}" (click)="setPage(i,$event)">{{i+1}}</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#{{pageNumber}}" (click)="nextPage($event)">Next</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
