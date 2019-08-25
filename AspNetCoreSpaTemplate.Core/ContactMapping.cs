@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 using TinyCsvParser.Mapping;
 
-namespace AspnetCoreSPATemplate.Models
+namespace AspNetCoreSpaTemplate.Core
 {
     public class CsvContactMapping : CsvMapping<Contact>
     {
@@ -24,5 +23,3 @@ namespace AspnetCoreSPATemplate.Models
         }
     }
 }
-
-

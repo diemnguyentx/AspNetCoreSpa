@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AspnetCoreSPATemplate.Models;
-using Microsoft.AspNetCore.Http;
+﻿using AspNetCoreSpaTemplate.Core;
+using AspNetCoreSpaTemplate.Data;
 using Microsoft.AspNetCore.Mvc;
-using TinyCsvParser;
+using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 
 namespace AspnetCoreSPATemplate.Controllers
 {
@@ -14,36 +10,27 @@ namespace AspnetCoreSPATemplate.Controllers
     [ApiController]
     public class ContactController : ControllerBase
     {
-        // GET: api/Contact
-        [HttpGet]
-        public List<Contact> Get()
+        private readonly IConfiguration config;
+        private readonly IContactData contactData;
+
+        public ContactController(IConfiguration config, IContactData contactData)
         {
-            CsvParserOptions csvParserOptions = new CsvParserOptions(true, ',');
-            CsvContactMapping csvMapper = new CsvContactMapping();
-            CsvParser<Contact> csvParser = new CsvParser<Contact>(csvParserOptions, csvMapper);
-            var result = csvParser
-                         .ReadFromFile(@"SampleData.csv", Encoding.ASCII)
-                         .ToList();
-            List<Contact> contacts = new List<Contact>();
-            foreach (var details in result)
-            {
-                contacts.Add(new Contact
-                {
-                    first_name = details.Result.first_name,
-                    last_name = details.Result.last_name,
-                    email = details.Result.email,
-                    phone1 = details.Result.phone1,
-                    address = details.Result.address,
-                    city = details.Result.city,
-                    company_name = details.Result.company_name,
-                    phone2 = details.Result.phone2,
-                    post = details.Result.post,
-                    state = details.Result.state,
-                    web = details.Result.web                   
-                });
-            }
-            return contacts;
+            this.config = config;
+            this.contactData = contactData;
         }
 
+        // GET: api/Contact
+        [HttpGet]
+        public IEnumerable<Contact> GetContacts(string term, int pageNumber, int pageSize)
+        {
+            return contactData.GetContactsByName(term, pageNumber, pageSize);
+        }
+
+        // GET: api/Contact/5
+        [HttpGet("{id}")]
+        public IEnumerable<Contact> GetContact(int id)
+        {
+            return contactData.GetContactsById(id);
+        }
     }
 }

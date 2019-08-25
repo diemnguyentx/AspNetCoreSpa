@@ -17,7 +17,7 @@
           <th>Phone</th>
         </tr>
       </thead>
-      <tbody >
+      <tbody>
         <tr *ngFor="let contactInfo of contacts | filter:term | paginate:{itemsPerPage:10,currentPage:p}; let i = index">
           <td>{{ contactInfo.first_name }}</td>
           <td>{{ contactInfo.last_name }}</td>
@@ -26,6 +26,9 @@
         </tr>
       </tbody>
     </table>
+ 
+    <a href="#0" (click)="gotoPage(0)">P1</a>
+    <a href="#1" (click)="gotoPage(1)">P2</a>
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>
 </div>
