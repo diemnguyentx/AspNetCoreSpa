@@ -6,7 +6,6 @@ import { ContactService } from '../contact.service';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
-  isShow = false;
   public pageNumber: number = 1;
   public term: string = '';
   public contacts: Array<any>;
@@ -17,7 +16,7 @@ export class ContactComponent implements OnInit {
   ngOnInit() {
     this.getContacts();
   }
-  
+
   setPage(i, event: any) {
     event.preventDefault();
     this.pageNumber = i;
@@ -39,5 +38,6 @@ export class ContactComponent implements OnInit {
         this.pages = new Array(result['totalPages']);
       }, error => console.error(error));
   }
+
 }
 
