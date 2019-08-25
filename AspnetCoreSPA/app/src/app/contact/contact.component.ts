@@ -6,7 +6,8 @@ import { ContactService } from '../contact.service';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
-  public pageNumber: number = 0;
+  isShow = false;
+  public pageNumber: number = 1;
   public term: string = '';
   public contacts: Array<any>;
   public pages: Array<number>
@@ -16,35 +17,27 @@ export class ContactComponent implements OnInit {
   ngOnInit() {
     this.getContacts();
   }
+  
   setPage(i, event: any) {
     event.preventDefault();
     this.pageNumber = i;
     this.getContacts();
   }
 
-  nextPage(event: any) {
-    event.preventDefault();
-    this.pageNumber = this.pageNumber + 1;
-    this.getContacts();
-  }
-  prevPage(event: any) {
-    event.preventDefault();
-    if (this.pageNumber > 0) {
-      this.pageNumber = this.pageNumber - 1;
-    }
-    this.getContacts();
-  }
   serchContacts() {
-    this.contactService.getContacts(this.term, this.pageNumber = 0)
+    this.contactService.getContacts(this.term, this.pageNumber = 1)
       .subscribe(result => {
-        this.contacts = result as Array<any>;
+        this.contacts = result['contactList'];
       }, error => console.error(error));
   }
+
   getContacts() {
     this.contactService.getContacts(this.term, this.pageNumber)
       .subscribe(result => {
-        this.contacts = result as Array<any>;
-        this.pages = new Array(5);
+        //console.log(result);
+        this.contacts = result['contactList'];
+        this.pages = new Array(result['totalPages']);
       }, error => console.error(error));
   }
 }
+

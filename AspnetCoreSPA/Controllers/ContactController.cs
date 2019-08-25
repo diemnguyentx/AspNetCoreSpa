@@ -12,6 +12,7 @@ namespace AspnetCoreSPATemplate.Controllers
     {
         private readonly IConfiguration config;
         private readonly IContactData contactData;
+        public int pageSize = 10;
 
         public ContactController(IConfiguration config, IContactData contactData)
         {
@@ -21,9 +22,9 @@ namespace AspnetCoreSPATemplate.Controllers
 
         // GET: api/Contact
         [HttpGet]
-        public IEnumerable<Contact> GetContacts(string term, int pageNumber, int pageSize)
+        public ContactPagination GetContacts(string term, int pageNumber)
         {
-            return contactData.GetContactsByName(term, pageNumber, pageSize);
+            return contactData.GetContactPagination(term, pageNumber, pageSize);
         }
 
         // GET: api/Contact/5

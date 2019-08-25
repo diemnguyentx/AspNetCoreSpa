@@ -8,6 +8,6 @@ export class ContactService {
 
   constructor(private http: HttpClient) { }
   getContacts(term: string, pageNumber: number) {
-    return this.http.get('/api/Contact', { params: { term: term, pageNumber: pageNumber.toString(), pageSize: "10" } });
+    return this.http.get('/api/Contact', { params: { term: term, pageNumber: pageNumber.toString()} });
   }
 }

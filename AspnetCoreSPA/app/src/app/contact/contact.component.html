@@ -33,15 +33,24 @@
       <hr>
       <nav aria-label="Page navigation example">
         <ul class="pagination pg-blue">
-          <li class="page-item">
-            <a class="page-link" href="#{{pageNumber}}" (click)="prevPage($event)">Previous</a>
+          <li class="page-item" [class.disabled]="pageNumber < 1">
+            <a class="page-link" href="/page/{{pageNumber+1}}" (click)="setPage(pageNumber-1,$event)">Previous</a>
           </li>
-          <li class="page-item" *ngFor="let p of pages; let i=index">
-            <a class="page-link" href="#{{pageNumber}}" (click)="setPage(i,$event)">{{i+1}}</a>
+          <li class="page-item" *ngFor="let p of pages.slice(1,6); let i=index" >
+            <a class="page-link" href="/page/{{pageNumber+1}}" (click)="setPage(i,$event)"
+            >{{i+1}}</a>
           </li>
-          <li class="page-item">
-            <a class="page-link" href="#{{pageNumber}}" (click)="nextPage($event)">Next</a></li>
+          <li class="page-item" >
+            <a class="page-link">...</a>
+          </li>
+          <li class="page-item" >
+            <a class="page-link">{{pageNumber+1}}</a>
+          </li>
+          <li class="page-item" [class.disabled]="pageNumber > pages.length">
+            <a class="page-link"  href="/page/{{pageNumber+1}}" (click)="setPage(pageNumber+1,$event)">Next</a></li>
         </ul>
       </nav>
+
     </div>
+    
   </div>

@@ -1,4 +1,5 @@
 ﻿using AspNetCoreSpaTemplate.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,27 +46,37 @@ namespace AspNetCoreSpaTemplate.Data
         }
 
 
-        /// <param name="term"></param>
-        /// <param name="pageNumber">UI => page 1 : 0</param>
-        /// <param name="pageSize"></param>
-        /// <returns></returns>
         public IEnumerable<Contact> GetContactsByName(string term, int pageNumber, int pageSize)
         {
             var query = contacts.AsQueryable();
+
             if (!string.IsNullOrEmpty(term))
             {
                 query = query.Where(x => x.first_name.Contains(term) || x.last_name.Contains(term));
             }
 
-            query = query.Skip(pageNumber * pageSize);
+            query = query.Skip((pageNumber -1) * pageSize);
             query = query.Take(pageSize);
 
-            return query.ToList();
+            return  query.ToList();
         }
 
         public IEnumerable<Contact> GetContactsById(int id)
         {
             throw new System.NotImplementedException();
+        }
+
+        
+        public ContactPagination GetContactPagination(string term, int pageNumber, int pageSize)
+        {
+            var query = contacts.AsQueryable();
+            int TotalPages = (int)Math.Ceiling((decimal)query.Count() / pageSize);
+
+            IEnumerable<Contact> contactList = GetContactsByName(term, pageNumber, pageSize);
+
+            var result = new ContactPagination() { TotalPages = TotalPages, ContactList = contactList};
+
+            return result;
         }
     }
 }
